@@ -1,0 +1,44 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.flattened-pom.xml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+.classpath
+.project
+.settings/
+bin/
+
+# Test Outputs
+screenshots/
+reports/
+logs/
+
+# Dependencies
+.m2/
+
+# OS
+Thumbs.db
+.AppleDouble
+.LSOverride
+*.class
+
+# Build
+*.jar
+*.zip
+
+# Misc
+.env
+.env.local

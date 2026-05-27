@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Demo Web Shop - Smoke Test Suite" 
+       verbose="2" 
+       thread-count="1" 
+       parallel="false">
+
+    <listeners>
+        <listener class-name="com.automation.listeners.TerminalSummaryListener"/>
+    </listeners>
+
+    <!-- Smoke Test Configuration -->
+    <!-- Minimal tests to verify basic functionality -->
+    <!-- Expected Execution Time: ~5-10 minutes -->
+
+    <parameter name="browser" value="chrome"/>
+    <parameter name="appUrl" value="https://demowebshop.tricentis.com/"/>
+
+    <!-- Critical Smoke Tests -->
+    <test name="Smoke Tests - Critical Path">
+        <classes>
+            <class name="com.automation.tests.RegistrationTest">
+                <methods>
+                    <include name="testValidUserRegistration"/>
+                </methods>
+            </class>
+            <class name="com.automation.tests.LoginTest">
+                <methods>
+                    <include name="testValidUserLogin"/>
+                </methods>
+            </class>
+            <class name="com.automation.tests.ProductSearchTest">
+                <methods>
+                    <include name="testSearchProductByKeyword"/>
+                </methods>
+            </class>
+            <class name="com.automation.tests.ShoppingCartTest">
+                <methods>
+                    <include name="testAddSingleProductToCart"/>
+                </methods>
+            </class>
+            <class name="com.automation.tests.CheckoutTest">
+                <methods>
+                    <include name="testProceedToCheckout"/>
+                </methods>
+            </class>
+            <class name="com.automation.tests.EndToEndPurchaseWorkflowTest">
+                <methods>
+                    <include name="testCompleteExistingUserPurchaseWorkflow"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

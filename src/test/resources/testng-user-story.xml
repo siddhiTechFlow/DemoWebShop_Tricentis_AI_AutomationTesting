@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="User Story Risk-Based Coverage Suite" verbose="2" thread-count="1" parallel="false" preserve-order="true">
+    <listeners>
+        <listener class-name="com.automation.listeners.TerminalSummaryListener"/>
+    </listeners>
+
+    <test name="User Story Functional UI Edge Non-Functional Coverage" enabled="true">
+        <classes>
+            <class name="com.automation.tests.UserStoryOrderPlacementTest">
+                <methods>
+                    <include name="testCriticalCustomerCanPlaceOrder"/>
+                    <include name="testUserStoryKeyUiElementsArePresent"/>
+                    <include name="testCheckoutRequiresBillingDetails"/>
+                    <include name="testProductDiscoveryResponseTime"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

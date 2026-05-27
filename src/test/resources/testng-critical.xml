@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Critical User Story Test Suite" verbose="2" thread-count="1" parallel="false" preserve-order="true">
+    <listeners>
+        <listener class-name="com.automation.listeners.TerminalSummaryListener"/>
+    </listeners>
+
+    <test name="Critical Checkout and Order Placement" enabled="true">
+        <classes>
+            <class name="com.automation.tests.UserStoryOrderPlacementTest">
+                <methods>
+                    <include name="testCriticalCustomerCanPlaceOrder"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

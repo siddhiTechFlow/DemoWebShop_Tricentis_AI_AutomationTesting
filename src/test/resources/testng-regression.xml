@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Demo Web Shop - Regression Test Suite" 
+       verbose="2" 
+       thread-count="1" 
+       parallel="false"
+       preserve-order="true">
+
+    <listeners>
+        <listener class-name="com.automation.listeners.TerminalSummaryListener"/>
+    </listeners>
+
+    <!-- Regression Test Configuration -->
+    <!-- Complete test coverage for regression testing -->
+    <!-- Expected Execution Time: ~45-60 minutes -->
+
+    <parameter name="browser" value="chrome"/>
+    <parameter name="appUrl" value="https://demowebshop.tricentis.com/"/>
+
+    <!-- All Registration Tests -->
+    <test name="Regression - Registration Tests">
+        <classes>
+            <class name="com.automation.tests.RegistrationTest">
+                <methods>
+                    <include name="testValidUserRegistration"/>
+                    <include name="testRegistrationWithExistingEmail"/>
+                    <include name="testRegistrationWithMismatchedPasswords"/>
+                    <include name="testRegistrationPageElementsValidation"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- All Login Tests -->
+    <test name="Regression - Login Tests">
+        <classes>
+            <class name="com.automation.tests.LoginTest">
+                <methods>
+                    <include name="testValidUserLogin"/>
+                    <include name="testLoginWithInvalidEmail"/>
+                    <include name="testLoginWithInvalidPassword"/>
+                    <include name="testLoginAndLogout"/>
+                    <include name="testLoginWithRememberMe"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- All Product Search Tests -->
+    <test name="Regression - Product Search Tests">
+        <classes>
+            <class name="com.automation.tests.ProductSearchTest">
+                <methods>
+                    <include name="testSearchProductByKeyword"/>
+                    <include name="testProductListDisplay"/>
+                    <include name="testViewProductDetails"/>
+                    <include name="testSearchWithEmptyKeyword"/>
+                    <include name="testSearchWithSpecialCharacters"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- All Shopping Cart Tests -->
+    <test name="Regression - Shopping Cart Tests">
+        <classes>
+            <class name="com.automation.tests.ShoppingCartTest">
+                <methods>
+                    <include name="testAddSingleProductToCart"/>
+                    <include name="testAddMultipleProductsToCart"/>
+                    <include name="testUpdateProductQuantityInCart"/>
+                    <include name="testRemoveProductFromCart"/>
+                    <include name="testCartTotalCalculation"/>
+                    <include name="testEmptyCartValidation"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- All Checkout Tests -->
+    <test name="Regression - Checkout Tests">
+        <classes>
+            <class name="com.automation.tests.CheckoutTest">
+                <methods>
+                    <include name="testProceedToCheckout"/>
+                    <include name="testEnterBillingAddress"/>
+                    <include name="testSelectShippingMethod"/>
+                    <include name="testSelectPaymentMethod"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- All End-to-End Workflow Tests -->
+    <test name="Regression - End-to-End Workflows">
+        <classes>
+            <class name="com.automation.tests.EndToEndPurchaseWorkflowTest">
+                <methods>
+                    <include name="testCompleteNewUserPurchaseWorkflow"/>
+                    <include name="testCompleteExistingUserPurchaseWorkflow"/>
+                    <include name="testMultipleProductsPurchase"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

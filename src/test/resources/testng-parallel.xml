@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Demo Web Shop - Parallel Execution Suite" 
+       verbose="2" 
+       thread-count="3" 
+       parallel="tests"
+       preserve-order="false">
+
+    <listeners>
+        <listener class-name="com.automation.listeners.TerminalSummaryListener"/>
+    </listeners>
+
+    <!-- Parallel Execution Configuration -->
+    <!-- Runs 3 test groups in parallel for faster execution -->
+    <!-- Expected Execution Time: ~15-20 minutes -->
+
+    <parameter name="browser" value="chrome"/>
+    <parameter name="appUrl" value="https://demowebshop.tricentis.com/"/>
+
+    <!-- Group 1: User Registration (Parallel) -->
+    <test name="Registration Tests - Parallel">
+        <classes>
+            <class name="com.automation.tests.RegistrationTest"/>
+        </classes>
+    </test>
+
+    <!-- Group 2: User Login (Parallel) -->
+    <test name="Login Tests - Parallel">
+        <classes>
+            <class name="com.automation.tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <!-- Group 3: Product Search (Parallel) -->
+    <test name="Product Search Tests - Parallel">
+        <classes>
+            <class name="com.automation.tests.ProductSearchTest"/>
+        </classes>
+    </test>
+
+    <!-- Group 4: Shopping Cart (Parallel) -->
+    <test name="Shopping Cart Tests - Parallel">
+        <classes>
+            <class name="com.automation.tests.ShoppingCartTest"/>
+        </classes>
+    </test>
+
+    <!-- Group 5: Checkout (Parallel) -->
+    <test name="Checkout Tests - Parallel">
+        <classes>
+            <class name="com.automation.tests.CheckoutTest"/>
+        </classes>
+    </test>
+
+    <!-- Group 6: End-to-End Workflows (Parallel) -->
+    <test name="End-to-End Purchase Workflow Tests - Parallel">
+        <classes>
+            <class name="com.automation.tests.EndToEndPurchaseWorkflowTest"/>
+        </classes>
+    </test>
+
+</suite>

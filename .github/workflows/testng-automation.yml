@@ -1,0 +1,98 @@
+name: Demo Web Shop TestNG Automation
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: TestNG suite XML to run
+        required: true
+        default: src/test/resources/testng-critical.xml
+        type: choice
+        options:
+          - src/test/resources/testng-critical.xml
+          - src/test/resources/testng-user-story.xml
+          - src/test/resources/testng.xml
+          - src/test/resources/testng-smoke.xml
+          - src/test/resources/testng-regression.xml
+      browser:
+        description: Browser name
+        required: true
+        default: chrome
+        type: choice
+        options:
+          - chrome
+
+jobs:
+  testng-automation:
+    name: Selenium TestNG Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Show Java and Maven versions
+        run: |
+          java -version
+          mvn -version
+
+      - name: Run TestNG suite
+        run: |
+          SUITE="${{ github.event.inputs.suite }}"
+          if [ -z "$SUITE" ]; then
+            SUITE="src/test/resources/testng-critical.xml"
+          fi
+
+          BROWSER="${{ github.event.inputs.browser }}"
+          if [ -z "$BROWSER" ]; then
+            BROWSER="chrome"
+          fi
+
+          mvn clean test \
+            -Dtest.suite="$SUITE" \
+            -Dtest.browser="$BROWSER" \
+            -Dtest.headless=true
+
+      - name: Upload Surefire and TestNG reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-testng-reports
+          path: |
+            target/surefire-reports/**
+          if-no-files-found: ignore
+
+      - name: Upload Extent reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: extent-reports
+          path: |
+            reports/**
+          if-no-files-found: ignore
+
+      - name: Upload logs and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-screenshots
+          path: |
+            logs/**
+            screenshots/**
+          if-no-files-found: ignore
