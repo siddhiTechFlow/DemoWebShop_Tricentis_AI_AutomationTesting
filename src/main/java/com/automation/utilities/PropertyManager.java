@@ -51,7 +51,10 @@ public class PropertyManager {
     }
 
     public static boolean isHeadless() {
-        String headless = System.getProperty("headless", getProperty("app.headless"));
+        String headless = System.getProperty("headless");
+        if (headless == null || headless.trim().isEmpty()) {
+            headless = System.getProperty("test.headless", getProperty("app.headless"));
+        }
         return Boolean.parseBoolean(headless);
     }
 

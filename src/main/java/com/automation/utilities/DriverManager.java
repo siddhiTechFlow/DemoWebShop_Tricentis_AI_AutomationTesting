@@ -8,7 +8,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 /**
  * WebDriver Manager Utility for managing WebDriver instances
@@ -50,9 +49,12 @@ public class DriverManager {
         options.addArguments("enable-automation");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--window-size=1920,1080");
         if (PropertyManager.isHeadless()) {
             options.addArguments("--headless=new");
-            options.addArguments("--window-size=1920,1080");
         }
         
         LoggerUtil.info("Initializing Chrome WebDriver");

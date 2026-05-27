@@ -25,6 +25,7 @@
         <!-- Configurable test suite and execution properties -->
         <test.suite>src/test/resources/testng.xml</test.suite>
         <test.browser>chrome</test.browser>
+        <test.headless>false</test.headless>
         <test.threadCount>1</test.threadCount>
     </properties>
 
@@ -114,6 +115,8 @@
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <browser>${test.browser}</browser>
+                        <headless>${test.headless}</headless>
+                        <test.headless>${test.headless}</test.headless>
                         <threadCount>${test.threadCount}</threadCount>
                     </systemPropertyVariables>
                 </configuration>
