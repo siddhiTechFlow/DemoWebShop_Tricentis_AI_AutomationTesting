@@ -81,11 +81,6 @@ DemoWebShopAutomation/
 
 ## Installation & Setup
 
-### Prerequisites
-- **Java 11 or higher** - Download from [Oracle Java](https://www.oracle.com/java/technologies/javase-downloads.html)
-- **Maven 3.8.9 or higher** - Download from [Apache Maven](https://maven.apache.org/download.cgi)
-- **Git** - For version control
-
 ### Step 1: Clone/Download the Project
 ```bash
 cd d:\Testing in AI
@@ -103,13 +98,6 @@ setx MAVEN_HOME "C:\apache-maven-3.8.9"
 
 # Add to PATH
 setx PATH "%PATH%;%MAVEN_HOME%\bin"
-```
-
-**Mac/Linux:**
-```bash
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.jdk/Contents/Home
-export MAVEN_HOME=/opt/maven
-export PATH=$PATH:$MAVEN_HOME/bin
 ```
 
 ### Step 3: Verify Installation
@@ -282,70 +270,6 @@ Each page has:
 - **Keyword-Driven** - Business logic in methods
 - **Modular** - Reusable components
 
-### Best Practices Implemented
-✅ Separation of concerns
-✅ Reusable page objects
-✅ Proper wait strategies (Implicit + Explicit)
-✅ Comprehensive logging
-✅ Screenshot on failure
-✅ Data-driven testing with Excel
-✅ Extent Reports integration
-✅ Centralized configuration
-✅ Exception handling
-✅ Base classes for inheritance
-
-## Logging
-
-### Log Levels
-- **INFO** - General information about test flow
-- **DEBUG** - Detailed information for debugging
-- **WARN** - Warning messages
-- **ERROR** - Error messages with exception details
-- **FATAL** - Critical errors
-
-### Log Configuration
-Edit `src/main/resources/log4j2.xml` to customize:
-- Log file location
-- Log format
-- Log level
-- Rolling policy
-
-## Utilities
-
-### LoggerUtil
-```java
-LoggerUtil.info("Test message");
-LoggerUtil.debug("Debug message");
-LoggerUtil.error("Error message", exception);
-```
-
-### ScreenshotUtil
-```java
-String screenshotPath = ScreenshotUtil.captureScreenshot(driver, "testName");
-```
-
-### ExcelUtil
-```java
-ExcelUtil excel = new ExcelUtil("filePath", "sheetName");
-String cellValue = excel.getCellValue(0, 0);
-Map<String, String> rowData = excel.getRowData(1);
-```
-
-### WaitUtil
-```java
-WaitUtil wait = new WaitUtil(driver);
-wait.waitForElementToBeClickable(locator);
-wait.waitForElementToBeVisible(locator);
-wait.waitForPageTitle("Expected Title");
-```
-
-### ExtentReportManager
-```java
-ExtentReportManager.logTestPass(extentTest, "Test passed");
-ExtentReportManager.logTestFail(extentTest, "Test failed");
-ExtentReportManager.addScreenshot(extentTest, screenshotPath);
-```
-
 ## Troubleshooting
 
 ### Common Issues
@@ -370,100 +294,5 @@ ExtentReportManager.addScreenshot(extentTest, screenshotPath);
 - Solution: Verify reports folder exists
 - Check disk space
 
-## Performance Tips
-
-1. **Parallel Execution** - Run tests in parallel (modify testng.xml)
-2. **Headless Mode** - Add headless option for faster execution
-3. **Reduce Wait Times** - Adjust timeouts for faster execution
-4. **Selective Screenshots** - Disable screenshots for passed tests
-
-## CI/CD Integration
-
-### Jenkins Pipeline Example
-```groovy
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-        stage('Report') {
-            steps {
-                publishHTML([
-                    reportDir: 'reports',
-                    reportFiles: 'ExtentReport.html',
-                    reportName: 'Test Report'
-                ])
-            }
-        }
-    }
-}
-```
-
-## Maintenance
-
-### Update Locators
-If UI elements change, update in corresponding page class:
-```java
-private By newLocator = By.xpath("//new/xpath");
-```
-
-### Add New Test Cases
-1. Create new test method in appropriate test class
-2. Use existing page objects and utilities
-3. Follow naming convention: test*()
-4. Add @Test annotation with description
-
-### Add New Page Objects
-1. Create new class extending BasePage
-2. Define locators as private By variables
-3. Add page-specific methods
-4. Add validation method
-
-## Documentation
-
-### Code Comments
-- Class level: Purpose of the class
-- Method level: What the method does
-- Complex logic: Why it's implemented this way
-
-### JavaDoc
-Generate JavaDoc:
-```bash
-mvn javadoc:javadoc
-```
-
-## Support & Contribution
-
-For issues, enhancements, or contributions:
-1. Report issues in detail with logs
-2. Provide screenshots if applicable
-3. Suggest improvements with rationale
-
-## License
-This framework is provided as-is for automation testing purposes.
-
-## Version History
-
-**v1.0.0** (Current)
-- Initial framework release
-- 27 comprehensive test cases
-- Full E2E workflow coverage
-- Extent Reports integration
-- Log4j logging
-- Data-driven testing
-- Screenshot capture
-- Cross-browser support
-
----
-
 **Happy Testing! 🚀**
 
-For more details, refer to specific utility classes and page object implementations.
